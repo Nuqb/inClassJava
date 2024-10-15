@@ -1,10 +1,7 @@
 from flask import Flask, request
-from dummydb import DummyDB
+from rollercoasters import RollerCoasterDB
 
 app = Flask(__name__)
-db = DummyDB("dummydb.db")
-print("db", db.readAllRecords())
-
 # ROLLERCOASTERS = [
 #     "Cannibal",
 #     "Twisted Coolosus",
@@ -13,13 +10,18 @@ print("db", db.readAllRecords())
 
 @app.route ("/rollercoasters", methods=["GET"])
 def retrieve_coasters():
-    rollercoasters = db.readAllRecords()
-    return db.readAllRecords(), 200, {"Access-Control-Allow-Origin" : "*"}
+    db = RollerCoasterDB("rollercoasters_db.db")
+    rollercoasters = db.getRollerCoasters()
+    return rollercoasters, 200, {"Access-Control-Allow-Origin" : "*"}
 
 @app.route("/rollercoasters", methods=["POST"])
 def create_coaster():
     print("The request data is: ", request.form)
-    db.saveRecord(request.form["name"])
+    name = request.form["name"]
+    review = request.form["review"]
+    rating = request.form["rating"]
+    db = RollerCoasterDB("rollercoasters_db.db")
+    db.createRollerCoaster(name,review,rating)
     return "Created", 201, {"Access-Control-Allow-Origin" : "*"}
 
 def run():
