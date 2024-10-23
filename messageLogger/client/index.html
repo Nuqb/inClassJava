@@ -9,13 +9,22 @@
 <body>
     <h2>Roller Coaster Reviews</h2>
     <hr>
-    <section>
-
+    <section id="form-container">
+        <div id="add-form">
+            <input id="input-coaster-name" placeholder="Name">
+            <textarea id="input-coaster-review" placeholder="Review"></textarea>
+            <input id="rating" placeholder="Rating">
+            <button id="add-review-button">Add a Coaster</button>
+        </div>
+    
+        <div id="edit-form">
+            <h4>Edit Form</h4>
+            <label for="edit-coaster-name">Name:</label>
+            <input type="text" id="edit-coaster-name"><br>
+            <label for="edit-coaster-review">Review:</label>
+        </div>
     </section>
-    <input id="input-coaster-name" placeholder="Name">
-    <textarea id="input-coaster-review" placeholder="Review"></textarea>
-    <input id="rating" placeholder="Rating">
-    <button id="add-review-button">Add a Coaster</button>
+
     <script src="app.js"></script>
 </body>
 </html>
